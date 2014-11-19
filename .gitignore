@@ -1,0 +1,13 @@
+# folders used exclusively for build results
+build/
+bin/
+lib/
+msg_gen/
+srv_gen/
+
+# eclipse project files
+.project
+.cproject
+
+# qtcreator generated files
+CMakeLists.txt.user
