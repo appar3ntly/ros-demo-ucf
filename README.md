@@ -4,8 +4,8 @@ ROS workspace for testing and demoing ROS functionality for UCF robotics club.
 
 # Table of Contents
 * [Current Contributors](#current-contributors)
-* [Current Packages](#Current Packages)
-* [How To Get Started Breaking Everything](#How To Get Started Breaking Everything)
+* [Current Packages](#current-packages)
+* [How To Get Started Breaking Everything](#quick-start)
 
 # <a name="current-contributors"></a>Current Contributors
 * Thomas Watters 
