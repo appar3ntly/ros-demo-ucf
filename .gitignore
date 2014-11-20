@@ -1,6 +1,7 @@
 # folders used exclusively for build results
 build/
 bin/
+devel/
 lib/
 msg_gen/
 srv_gen/
