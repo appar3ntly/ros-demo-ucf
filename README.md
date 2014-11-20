@@ -1,6 +1,7 @@
 ros-demo-ucf
 ============
-ROS workspace for testing and demoing ROS functionality for UCF robotics club.
+ROS workspace for testing and demoing ROS functionality for UCF robotics club.<br></br><br></br>
+Note this is **NOT** the repo for competition/actual development code.  It is entirely devoted to random testing or tutorial package code.  As such, branches other than master may at times be terribly disorganized.
 
 # Table of Contents
 * [Current Contributors](#current-contributors)
