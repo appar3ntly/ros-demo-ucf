@@ -2,17 +2,17 @@ ros-demo-ucf
 ============
 ROS workspace for testing and demoing ROS functionality for UCF robotics club.
 
-This is an entirely informal workspace used in exploring and potentially teaching new members about ROS functionality.
-As new packages are added, entries may be placed here to explain what can be found in them or for resources used in 
-their development.  Expect this space to at times be a bit unorganized or without documentation of any kind :)
+#Table of Contents
+* [Current Contributors](#Current Contributors)
+* [Current Packages](#Current Packages)
+* [How To Get Started Breaking Everything](#How To Get Started Breaking Everything)
 
-
-##Currently Maintened/Contributed to By
+#Current Contributors
 * Thomas Watters 
 * Kenneth Richardson
 
 
-##Current Packages
+#Current Packages
 ###agitr
 Package containing selected source code from the Jason M. O'Kane book 'A Gentle Introduction to ROS'
 A free web version of the book can be found at http://www.cse.sc.edu/~jokane/agitr/
@@ -33,7 +33,7 @@ May be deleted in the near future as it doesn't contain much useful.
 Various implementations intended to test ROS features using the Turtlebot platform.
 
 
-##How To Get Started Breaking Everything
+#How To Get Started Breaking Everything
 0. FOLLOW THIS OR ELSE!
 
     http://wiki.ros.org/turtlebot/Tutorials/indigo/Installation
@@ -48,8 +48,7 @@ Various implementations intended to test ROS features using the Turtlebot platfo
     catkin_make
     ```
    
-4. Preferably (not required but it may make life easier) make your own branch to work in before jacking everything up
-and to make sure your master stays clean.  
+4. Preferably (not required but it may make life easier) to avoid jacking up your master branch. 
 Type in terminal:
 
     ```
