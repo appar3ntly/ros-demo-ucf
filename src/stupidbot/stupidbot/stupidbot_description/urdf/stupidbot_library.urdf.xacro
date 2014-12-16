@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	<!-- General robot properties -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_properties.urdf.xacro"/>
+	<!-- Robot body creation macros -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_chassis.urdf.xacro"/>
+	<!-- Gazebo descriptions -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_gazebo.urdf.xacro"/>
+</robot>

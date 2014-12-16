@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="stupidbot" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_library.urdf.xacro"/>
+
+	<stupidbot_chassis/>
+	<differential_skid/>
+</robot>

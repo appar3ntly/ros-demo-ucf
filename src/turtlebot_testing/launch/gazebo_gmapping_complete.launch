@@ -1,7 +1,7 @@
 <launch>
-	<arg name="world" value="turtlebot_playground" />
-	<arg name="localization" value="gmapping_demo" />
-	<arg name="rviz" value="view_navigation" />
+	<arg name="world" default="turtlebot_playground" />
+	<arg name="localization" default="gmapping_demo" />
+	<arg name="rviz" default="view_navigation" />
 
 	<include file="$(find turtlebot_gazebo)/launch/$(arg world).launch" />
 	<include file="$(find turtlebot_gazebo)/launch/$(arg localization).launch" />

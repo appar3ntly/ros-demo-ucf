@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!-- TODO
+  Turn into xacro file
+  Build other urdf using the macro defined here
+  -->
+<robot name="r2" xmlns:xacro="http://ros.org/wiki/xacro">
+	<!-- Include r2d2 physical properties -->
+	<xacro:include filename="$(find my_urdf_tutorial)/urdf/r2d2_properties.urdf.xacro"/>
+
+	<xacro:macro name="r2d2_main">
+
+	<!-- Base robot link, main body of the robot -->
+		<link name="base_link">
+			<visual>
+				<geometry>
+					<cylinder length="${body_height}" radius="${body_radius}"/>
+				</geometry>
+				<material name="blue">
+					<color rgba="0 0 0.8 1"/>
+				</material>
+			</visual>
+		</link>
+
+		<!-- Right leg link -->
+		<link name="right_leg">
+			<visual>
+				<geometry>
+					<box size="${leg_length} ${leg_width} ${leg_height}"/>
+				</geometry>
+				<material name="white">
+					<color rgba="1 1 1 1"/>
+				</material>
+				<origin rpy="1.57057 1.57057 0" xyz="0 0 -${leg_length/2}"/>
+			</visual>
+		</link>
+
+		<!-- Joint connecting base_link and right_leg -->
+		<joint name="base_to_right_leg" type="fixed">
+			<parent link="base_link"/>
+			<child link="right_leg"/>
+			<origin xyz="0 -0.22 0.25"/>
+		</joint>
+
+		<!-- Left leg link -->
+		<link name="left_leg">
+			<visual>
+				<geometry>
+					<box size="${leg_length} ${leg_width} ${leg_height}"/>
+				</geometry>
+				<material name="white"/>
+				<origin rpy="1.57057 1.57057 0" xyz="0 0 -${leg_length/2}"/>
+			</visual>
+		</link>
+
+		<!-- Joint connecting base_link and left_leg -->
+		<joint name="base_to_left_leg" type="fixed">
+			<parent link="base_link"/>
+			<child link="left_leg"/>
+			<origin xyz="0 0.22 0.25"/>
+		</joint>
+
+		<!-- Right foot link -->
+		<link name="right_foot">
+			<visual>
+				<geometry>
+					<box size="${foot_length} ${foot_thickness} ${foot_thickness}"/>
+				</geometry>
+				<material name="white"/>
+			</visual>
+		</link>
+
+		<!-- Joint connecting right_leg and right_foot -->
+		<joint name="right_leg_to_right_foot" type="fixed">
+			<parent link="right_leg"/>
+			<child link="right_foot"/>
+			<origin xyz="0 0 -${leg_length}"/>
+		</joint>
+
+		<!-- Left foot link -->
+		<link name="left_foot">
+			<visual>
+				<geometry>
+					<box size="${foot_length} ${foot_thickness} ${foot_thickness}"/>
+				</geometry>
+				<material name="white"/>
+			</visual>
+		</link>
+
+		<!-- Joint connecting left_leg and left_foot -->
+		<joint name="left_leg_to_left_foot" type="fixed">
+			<parent link="left_leg"/>
+			<child link="left_foot"/>
+			<origin xyz="0 0 -${leg_length}"/>
+		</joint>
+
+		<!-- Right side wheels -->
+		<!-- 
+		    Two links, one for each wheel, and one joint per wheel
+		    connecting it to the foot.
+		  -->                    
+		<link name="right_front_wheel">
+			<visual>
+				<geometry>
+					<cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+				</geometry>
+				<material name="black">
+					<color rgba="0 0 0 1"/>
+				</material>
+				<origin rpy="1.57057 0 0"/>
+			</visual>
+		</link>
+
+		<link name="right_rear_wheel">
+			<visual>
+				<geometry>
+					<cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+				</geometry>
+				<material name="black"/>
+				<origin rpy="1.57057 0 0"/>
+			</visual>
+		</link>
+
+		<joint name="right_foot_to_front_wheel" type="fixed">
+			<parent link="right_foot"/>
+			<child link="right_front_wheel"/>
+			<origin xyz="${foot_length/4 + wheel_radius} 0 -${foot_thickness/2 + wheel_radius}"/>
+		</joint>
+
+		<joint name="right_foot_to_rear_wheel" type="fixed">
+			<parent link="right_foot"/>
+			<child link="right_rear_wheel"/>
+			<origin xyz="-${foot_length/4 + wheel_radius} 0 -${foot_thickness/2 + wheel_radius}"/>
+		</joint>
+
+		<!-- Left side wheels -->
+		<!-- 
+		    Two links, one for each wheel, and one joint per wheel
+		    connecting it to the foot.
+		  -->
+	    <link name="left_front_wheel">
+	    	<visual>
+	    		<geometry>
+	    			<cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+	    		</geometry>
+	    		<material name="black"/>
+	    		<origin rpy="1.57057 0 0"/>
+	    	</visual>
+	    </link>
+
+	    <link name="left_rear_wheel">
+	    	<visual>
+	    		<geometry>
+	    			<cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+	    		</geometry>
+	    		<material name="black"/>
+	    		<origin rpy="1.57057 0 0"/>
+	    	</visual>
+	    </link>
+
+	    <joint name="left_foot_to_front_wheel" type="fixed">
+	    	<parent link="left_foot"/>
+	    	<child link="left_front_wheel"/>
+	    	<origin xyz="${foot_length/4 + wheel_radius} 0 -${foot_thickness/2 + wheel_radius}"/>
+	    </joint>
+
+	    <joint name="left_foot_to_rear_wheel" type="fixed">
+	    	<parent link="left_foot"/>
+	    	<child link="left_rear_wheel"/>
+	    	<origin xyz="-${foot_length/4 + wheel_radius} 0 -${foot_thickness/2 + wheel_radius}"/>
+	    </joint>
+
+	    <!-- Head sphere -->
+	    <link name="head">
+	    	<visual>
+	    		<geometry>
+	    			<sphere radius="${body_radius}"/>
+	    		</geometry>
+	    		<material name="white"/>
+	    	</visual>
+	    </link>
+
+	    <!-- Joint connecting base_link and head -->
+	    <joint name="base_to_head" type="continuous">
+	    	<parent link="base_link"/>
+	    	<child link="head"/>
+	    	<axis xyz="0 0 1"/>
+	    	<origin xyz="0 0 ${body_height/2}"/>
+	    </joint>
+
+	    <!-- Face protrusion -->
+	    <link name="face">
+	    	<visual>
+	    		<geometry>
+	    			<box size="0.1 0.1 0.1"/>
+	    		</geometry>
+	    		<material name="blue"/>
+	    	</visual>
+	    </link>
+
+	    <!-- Joint connecting head to face -->
+	    <joint name="head_to_face" type="fixed">
+	    	<parent link="head"/>
+	    	<child link="face"/>
+	    	<origin xyz="0.15 0 0.1"/>
+	    </joint>
+
+	    <!-- Gripper arm -->
+	    <link name="gripper_pole">
+	    	<visual>
+	    		<geometry>
+	    			<cylinder length="${2*body_radius}" radius="0.01"/>
+	    		</geometry>
+	    		<material name="white"/>
+	    		<origin xyz="${body_radius} 0 0" rpy="0 1.57057 0"/>
+	    	</visual>
+	    </link>
+
+	    <!-- Joint connecting gripper arm and body -->
+	    <joint name="body_to_gripper_pole" type="prismatic">
+	    	<parent link="base_link"/>
+	    	<child link="gripper_pole"/>
+	    	<limit effort="1000.0" lower="-${body_radius/2}" upper="0" velocity="0.5"/>
+	    	<origin xyz="0 0 ${3*body_height/8}"/>
+	    </joint>
+
+	    <!-- Gripper hand -->
+	    <link name="left_gripper">
+	        <visual>
+	            <geometry>
+	                <mesh filename="package://my_urdf_tutorial/meshes/l_gripper.dae"/>
+	            </geometry>
+	        </visual>
+	    </link>
+
+	    <!-- Joint connecting gripper arm to gripper hand -->
+	    <joint name="gripper_pole_to_left_gripper" type="revolute">
+	    	<axis xyz="0 0 1"/>
+	    	<limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+	    	<origin xyz="${2*body_radius} 0 0"/>
+	    	<parent link="gripper_pole"/>
+	    	<child link="left_gripper"/>
+	    </joint>
+	</xacro:macro>
+</robot>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot>
+	<property name="wheel_width" value="0.1"/>
+	<property name="wheel_radius" value="0.03"/>
+	<property name="body_height" value="0.6"/>
+	<property name="body_radius" value="0.2"/>
+	<property name="leg_length" value="0.6"/>
+	<property name="leg_width" value="0.2"/>
+	<property name="leg_height" value="0.1"/>
+	<property name="foot_length" value="0.4"/>
+	<property name="foot_thickness" value="0.1"/>
+</robot>

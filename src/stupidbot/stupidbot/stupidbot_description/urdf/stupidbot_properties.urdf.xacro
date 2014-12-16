@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot>
+	<property name="chassis_length" value="0.2"/>
+	<property name="chassis_width" value="0.2"/>
+	<property name="chassis_height" value="0.05"/>
+	<property name="wheel_width" value="0.04"/>
+	<property name="wheel_radius" value="0.06"/>
+	<property name="caster_width" value="0.02"/>
+	<property name="caster_radius" value="0.02"/>
+</robot>

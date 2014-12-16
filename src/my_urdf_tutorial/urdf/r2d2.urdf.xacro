@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="r2d2" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:include filename="$(find my_urdf_tutorial)/urdf/05-r2d2.urdf.xacro"/>
+	<xacro:include filename="$(find my_urdf_tutorial)/urdf/r2d2_properties.urdf.xacro"/>
+
+	<r2d2_main />
+</robot>

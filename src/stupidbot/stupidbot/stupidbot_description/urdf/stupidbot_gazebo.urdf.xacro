@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="stupidbot_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- Differential Drive -->
+	<xacro:macro name="differential_skid">
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_properties.urdf.xacro"/>
+		<gazebo>
+			<plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+				<alwaysOn>true</alwaysOn>
+				<updateRate>100.0</updateRate>
+				<robotNamespace>/</robotNamespace>
+				<leftJoint>base_to_left_wheel</leftJoint>
+				<rightJoint>base_to_right_wheel</rightJoint>
+				<publishWheelTF>true</publishWheelTF>
+				<publishWheelJointState>true</publishWheelJointState>
+				<publishTF>1</publishTF>
+				<wheelSeparation>${chassis_width}</wheelSeparation>
+				<wheelDiameter>${2*wheel_radius}</wheelDiameter>
+				<robotBaseFrame>base_link</robotBaseFrame>
+			</plugin>
+			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+		</gazebo>
+	</xacro:macro>
+</robot>
