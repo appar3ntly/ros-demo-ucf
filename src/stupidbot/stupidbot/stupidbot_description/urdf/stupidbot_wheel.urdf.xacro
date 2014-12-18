@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
-<robot name="wheels" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
 	<!-- Include chassis properties for positioning joints -->
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_properties.urdf.xacro"/>
 
-	<!-- Wheel properties -->
-	<xacro:property name="wheel_mass" value="10.0"/>
-	<xacro:property name="wheel_radius" value="0.06"/>
-	<xacro:property name="wheel_width" value="0.04"/>
-
+	<!-- Full description macro for wheel including transmissions, etc -->
 	<xacro:macro name="wheel" params="lr parent reflectY">
 		
 		<!-- Wheel link description -->
@@ -21,7 +18,7 @@
 			</visual>
 			<inertial>
 				<mass value="${wheel_mass}"/>
-				<inertia ixx="${(wheel_mass*(3*wheel_radius*wheel_radius + wheel_width*wheel_width))/12}" ixy="0.0" ixz="0.0" iyy="${(wheel_mass*(3*wheel_radius*wheel_radius + wheel_width*wheel_width))/12}" iyz="0.0" izz="${(wheel_mass*wheel_radius*wheel_radius)/2}"/>
+				<inertia ixx="${wheel_ixx}" ixy="0.0" ixz="0.0" iyy="${wheel_iyy}" iyz="0.0" izz="${wheel_izz}"/>
 			</inertial>
 			<collision>
 				<geometry>
@@ -29,13 +26,16 @@
 				</geometry>
 				<origin rpy="1.57057 0 0"/>
 			</collision>
-			<gazebo reference="${lr}_wheel">
-				<mu1 value="1.0"/>
-				<mu2 value="1.0"/>
-				<kp  value="10000000.0" />
-      			<kd  value="100.0" />
-			</gazebo>
 		</link>
+
+		<!-- Gazebo description for wheel -->
+		<gazebo reference="${lr}_wheel">
+			<mu1>1.0</mu1>
+			<mu2>1.0</mu2>
+			<kp>10000000.0</kp>
+			<kd>100.0</kd>
+			<minDepth>0.001</minDepth>
+		</gazebo>
 
 		<!-- Joint connecting wheel and base link -->
 		<joint name="${lr}_wheel_joint" type="continuous">
@@ -44,8 +44,10 @@
 			<axis xyz="0 1 0"/>
 			<origin xyz="-${chassis_length/4} ${reflectY * (chassis_width/2 + wheel_width/2)} 0"/>
 			<limit effort="100" velocity="0.0"/>
-			<gazebo reference="${lr}_wheel_joint"/>
 		</joint>
+
+		<!-- Gazebo description for wheel_joint -->
+		<gazebo reference="${lr}_wheel_joint"/>
 
 		<!-- Transmission for wheel joint -->
 		<transmission name="${lr}_wheel_trans">

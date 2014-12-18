@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<!-- Include properties file -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_properties.urdf.xacro"/>
+
+	<!-- Complete camera setup macro -->
+	<xacro:macro name="stupidbot_camera" params="parent">
+
+		<!-- Camera body/link description -->
+		<link name="camera_link">
+			<visual>
+				<geometry>
+					<box size="${camera_length} ${camera_width} ${camera_height}"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<mass value="${camera_mass}"/>
+				<inertia ixx="${camera_ixx}" ixy="0.0" ixz="0.0" iyy="${camera_iyy}" iyz="0.0" izz="${camera_izz}"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<box size="${camera_length} ${camera_width} ${camera_height}"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<!-- Camera reference in Gazebo -->
+		<gazebo reference="camera_link">
+			<sensor type="camera" name="front_camera">
+				<update_rate>30.0</update_rate>
+				<camera name="front">
+					<horizontal_fov>1.3962634</horizontal_fov>
+					<image>
+						<width>800</width>
+						<height>800</height>
+						<format>R8G8B8</format>
+					</image>
+					<clip>
+						<near>0.02</near>
+						<far>300</far>
+					</clip>
+				</camera>
+				<!-- Set up Gazebo plugin for the camera -->
+				<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>0.0</updateRate>
+					<cameraName>front_camera</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>camera_link</frameName>
+				</plugin>
+			</sensor>
+		</gazebo>
+
+		<!-- Joint connecting the body and camera links -->
+		<joint name="body_to_camera_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="camera_link"/>
+			<origin xyz="${camera_x_pos} ${camera_y_pos} ${camera_z_pos}"/>
+		</joint>
+
+		<gazebo reference="body_to_camera_joint"/>
+
+	</xacro:macro>
+</robot>

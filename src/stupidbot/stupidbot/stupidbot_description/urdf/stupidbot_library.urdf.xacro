@@ -6,6 +6,8 @@
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_wheel.urdf.xacro"/>
 	<!-- Caster wheel macro -->
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_caster.urdf.xacro"/>
+	<!-- Camera macro -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/sensors/stupidbot_camera.urdf.xacro"/>
 	<!-- Gazebo descriptions -->
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_gazebo.urdf.xacro"/>
 </robot>
