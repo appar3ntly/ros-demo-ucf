@@ -2,8 +2,10 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 	<!-- General robot properties -->
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_properties.urdf.xacro"/>
-	<!-- Robot body creation macros -->
-	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_chassis.urdf.xacro"/>
+	<!-- Robot wheel creation macro -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_wheel.urdf.xacro"/>
+	<!-- Caster wheel macro -->
+	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_caster.urdf.xacro"/>
 	<!-- Gazebo descriptions -->
 	<xacro:include filename="$(find stupidbot_description)/urdf/stupidbot_gazebo.urdf.xacro"/>
 </robot>
