@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot>
 
+	<!-- Mathematical constants -->
+	<property name="M_PI" value="3.14159"/>
 	<!-- Chassis/body properties -->
 	<property name="chassis_length" value="0.2"/>
 	<property name="chassis_width" value="0.2"/>
