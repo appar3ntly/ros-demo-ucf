@@ -12,3 +12,6 @@ srv_gen/
 
 # qtcreator generated files
 CMakeLists.txt.user
+
+# clion/intellij project stuff
+.idea/

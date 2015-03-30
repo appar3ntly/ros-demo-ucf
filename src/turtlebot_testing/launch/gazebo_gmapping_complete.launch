@@ -1,9 +1,12 @@
 <launch>
-	<arg name="world" default="turtlebot_playground" />
+	<arg name="world" default="turtlebot_world" />
 	<arg name="localization" default="gmapping_demo" />
 	<arg name="rviz" default="view_navigation" />
 
 	<include file="$(find turtlebot_gazebo)/launch/$(arg world).launch" />
 	<include file="$(find turtlebot_gazebo)/launch/$(arg localization).launch" />
+    <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml" >
+        <arg name="custom_param_file" value="$(find turtlebot_testing)/param/custom_navfn_global_planner_params.yaml"/>
+    </include>
 	<include file="$(find turtlebot_rviz_launchers)/launch/$(arg rviz).launch" />
 </launch>
