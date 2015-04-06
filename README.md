@@ -14,22 +14,6 @@ Note this is **NOT** the repo for competition/actual development code.  It is en
 
 
 # <a name="current-packages"></a>Current Packages
-###agitr
-Package containing selected source code from the Jason M. O'Kane book 'A Gentle Introduction to ROS'<br></br>
-A free web version of the book can be found at http://www.cse.sc.edu/~jokane/agitr/
-
-###my_urdf_tutorial
-Source code from the ROS urdf tutorials at http://wiki.ros.org/urdf/Tutorials<br></br>
-Specifically starting from tutorial 2.1 on the aforementioned page.
-
-###powerpoint_tutorials
-Source code from the powerpoint tutorials found at http://u.cs.biu.ac.il/~yehoshr1/89-685/Fall2013/index.html<br></br>
-Contains source for most of lessons 1-3 and a solution for the roomba-like assignment described at the end of lesson 3.
-
-###testbot_description
-Source for ROS urdf tutorials 1.1 up to start of 2.x.<br></br>
-May be deleted in the near future as it doesn't contain much useful.
-
 ###turtlebot_testing
 Various implementations intended to test ROS features using the Turtlebot platform.
 
