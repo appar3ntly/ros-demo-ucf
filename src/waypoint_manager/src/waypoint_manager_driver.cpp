@@ -10,15 +10,14 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "waypoint_manager_node");
     ros::NodeHandle nh("~");
 
-    std::string file_path;
+    std::string file_path = "/home/kenneth/temp/waypoints_test.txt";
 
-    // Get parameter specifying initial waypoint list filepath.
     nh.getParam("waypoint_file", file_path);
 
     // Variables for re-use in readfile loop.
     std::string input_line;
     std::vector<double> waypoint_values;
-    boost::char_separator<char> separator(",");
+    boost::char_separator<char> separator(", ");
     std::vector<geometry_msgs::Pose> initial_poses;
     geometry_msgs::Pose pose;
 
