@@ -9,4 +9,14 @@
         <arg name="custom_param_file" value="$(find turtlebot_testing)/param/custom_navfn_global_planner_params.yaml"/>
     </include>
 	<include file="$(find turtlebot_rviz_launchers)/launch/$(arg rviz).launch" />
+
+    <!-- Probably really dumb, need to set map and global costmap size to fairly large on launch. -->
+    <param name="/slam_gmapping/xmin" value="-10" />
+    <param name="/slam_gmapping/xmax" value="10" />
+    <param name="/slam_gmapping/ymin" value="-10" />
+    <param name="/slam_gmapping/ymax" value="10" />
+    <param name="/move_base/global_costmap/height" value="20.0" />
+    <param name="/move_base/global_costmap/width" value="20.0" />
+    <param name="/move_base/global_costmap/update_frequency" value="5.0" />
+    <param name="/move_base/global_costmap/publish_frequency" value="5.0" />
 </launch>
